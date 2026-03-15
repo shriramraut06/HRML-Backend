@@ -14,6 +14,7 @@ def get_db():
         db.close()
 
 @router.post("", response_model=EmployeeOut)
+@router.post("/", response_model=EmployeeOut)
 def add_employee(payload: EmployeeCreate, db: Session = Depends(get_db)):
     existing = db.query(Employee).filter(
         (Employee.employee_id == payload.employee_id) |
@@ -30,6 +31,7 @@ def add_employee(payload: EmployeeCreate, db: Session = Depends(get_db)):
     return emp
 
 @router.get("", response_model=list[EmployeeOut])
+@router.get("/", response_model=list[EmployeeOut])
 def list_employees(db: Session = Depends(get_db)):
     return db.query(Employee).all()
 

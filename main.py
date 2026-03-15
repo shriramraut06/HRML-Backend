@@ -7,11 +7,6 @@ from routes.attendance import router as attendance_router
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-
-@app.get("/")
-def home():
-    return {"message": "HRMS Backend Running Successfully"}
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -24,3 +19,11 @@ app.add_middleware(
 
 app.include_router(employee_router)
 app.include_router(attendance_router)
+
+@app.get("/")
+def home():
+    return {"message": "HRMS Backend Running Successfully"}
+
+
+
+

@@ -14,6 +14,7 @@ def get_db():
         db.close()
 
 @router.post("", response_model=EmployeeOut)
+@router.post("/", response_model=EmployeeOut)
 def add_employee(payload: EmployeeCreate, db: Session = Depends(get_db)):
     existing = db.query(Employee).filter(
         (Employee.employee_id == payload.employee_id) |
